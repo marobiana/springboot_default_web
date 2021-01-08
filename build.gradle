@@ -19,8 +19,9 @@ repositories {
 	mavenCentral()
 }
 
-war {
-    enabled = true
+bootWar{
+    archiveBaseName="springproject"
+    archiveVersion="0.0.1-SNAPSHOT"
 }
 
 dependencies {
