@@ -32,9 +32,9 @@
 - mysql을 다운받고 mysql workbench 프로그램을 설치한 뒤 DB, table을 생성한다.
 
 ## 6. Spring boot에서 DB 연동 시키기
-### 첫번째 방법
 > 3-(2)에서 추가한 임시 코드는 제거한다.  
 
+### 첫번째 방법
 > *Application.java에 아래 코드를 추가한다.
 ```
 @Bean
