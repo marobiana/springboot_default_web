@@ -2,7 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.4.1'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
-	id "base"
+	id 'war'
 }
 
 group = 'com.marondal'
@@ -19,10 +19,16 @@ repositories {
 	mavenCentral()
 }
 
+bootJar{
+    archiveBaseName="springproject"
+    archiveVersion="0.0.1-SNAPSHOT"
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat' 
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'
