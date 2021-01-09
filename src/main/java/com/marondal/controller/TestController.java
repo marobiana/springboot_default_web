@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.marondal.dao.TestDAO;
 import com.marondal.dto.TestDTO;
 
-@RestController
+@Controller
 public class TestController {
 	
 	@Autowired
@@ -33,9 +35,15 @@ public class TestController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/test")
+	@RequestMapping(value = "/test1")
 	public List<TestDTO> tests() throws Exception {
 		List<TestDTO> tests = testDAO.selectTests();
 		return tests;
+	}
+	
+	// view
+	@RequestMapping(value = "/test")
+	public String test() throws Exception {
+		return "test/test";
 	}
 }

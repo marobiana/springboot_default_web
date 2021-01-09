@@ -31,6 +31,8 @@ dependencies {
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.10.1'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.10.1'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.1'
+    compile('org.apache.tomcat.embed:tomcat-embed-jasper')
+	compile('javax.servlet:jstl:1.2')
 }
 
 test {
