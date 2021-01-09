@@ -26,12 +26,41 @@
 
 ### jackson 추가 후 동작 테스트
  -  map을 리턴하고 json으로 request mapping 되는지 본다.
+ 
+## 5. view(jsp) 연동하기
 
-## 5. window에 mysql 로컬 서버 구축
+### dependency 추가
+> 반드시 build refresh 할 것(안하면 404의 늪...)
+```
+compile('org.apache.tomcat.embed:tomcat-embed-jasper')
+compile('javax.servlet:jstl:1.2')
+``` 
+
+### application.properties 추가
+```
+server.port = 8888     --> port 변경
+spring.mvc.view.prefix=/WEB-INF/jsp/
+spring.mvc.view.suffix=.jsp
+```
+
+### jsp 추가
+- 외부에서 jsp로 직접 접근을 막기 위해 아래 경로에 jsp를 저장한다.  
+`src/main/java/webapp/WEB-INF/jsp/test/test.jsp`  
+
+### view에 접속하기 위한 TestController 작성
+- 반드시 @Controller 어노테이션 사용할 것
+```
+@RequestMapping(value = "/test")
+public String test() throws Exception {
+	return "test/test";   
+}
+```
+
+## 6. window에 mysql 로컬 서버 구축
 - https://mainia.tistory.com/5972
 - mysql을 다운받고 mysql workbench 프로그램을 설치한 뒤 DB, table을 생성한다.
 
-## 6. Spring boot에서 DB 연동 시키기
+## 7. Spring boot에서 DB 연동 시키기
 > 3-(2)에서 추가한 임시 코드는 제거한다.  
 
 ### 첫번째 방법
