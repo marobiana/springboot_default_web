@@ -132,3 +132,11 @@ public class DatabaseConfig {
     }
 }
 ```
+
+### application.properties
+```
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/testdb?serverTimezone=UTC&characterEncoding=UTF-8
+spring.datasource.username=root
+spring.datasource.password=비번값
+```
