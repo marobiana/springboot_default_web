@@ -11,39 +11,39 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 @Configuration
-// interface(mapper)°¡ ÀÖ´Â ÆĞÅ°Áö °æ·Î
+// interface(mapper)ê°€ ìˆëŠ” íŒ¨í‚¤ì§€ ê²½ë¡œ
 @MapperScan(basePackages="com.marondal.*")
 public class DatabaseConfig {
 	 /**
-     * Session Factory ¼³Á¤
+     * Session Factory ì„¤ì •
      */
     @Bean()
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
         final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
-        // ¸®Á¹¹ö¿¡ µî·ÏµÈ ÆĞÅ°Áö ÇÏÀ§ÀÇ dao Å¬·¡½º¸¦ ½ºÄµÇÕ´Ï´Ù.
+        // ë¦¬ì¡¸ë²„ì— ë“±ë¡ëœ íŒ¨í‚¤ì§€ í•˜ìœ„ì˜ dao í´ë˜ìŠ¤ë¥¼ ìŠ¤ìº”í•©ë‹ˆë‹¤.
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
  
-        // ¿À¸¥ÂÊ¿¡ ÀÖ´Â ¸®¼Ò½º °æ·Î¿¡ µé¾î°¨(src/main/resources)      
+        // ì˜¤ë¥¸ìª½ì— ìˆëŠ” ë¦¬ì†ŒìŠ¤ ê²½ë¡œì— ë“¤ì–´ê°(src/main/resources)      
         sessionFactory.setMapperLocations(resolver.getResources(
-            // ½ÇÁ¦ Äõ¸®°¡ µé¾î°¥ xml ÆĞÅ°Áö °æ·Î
+            // ì‹¤ì œ ì¿¼ë¦¬ê°€ ë“¤ì–´ê°ˆ xml íŒ¨í‚¤ì§€ ê²½ë¡œ
             "classpath:mappers/*Mapper.xml"
         ));
  
-        // Value Object¸¦ ¼±¾ğÇØ ³õÀº package °æ·Î
+        // Value Objectë¥¼ ì„ ì–¸í•´ ë†“ì€ package ê²½ë¡œ
         sessionFactory.setTypeAliasesPackage( "com.marondal.*" );
         return sessionFactory.getObject();
     }
  
     /**
-     * Mybatis template ¼³Á¤
+     * Mybatis template ì„¤ì •
      */
     @Bean
     public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) throws Exception {
         SqlSessionTemplate sqlSessionTemplate = new SqlSessionTemplate(sqlSessionFactory);
-        // underscore¸¦ camelCase·Î ¸ÅÄª : ¿¹) user_id -> userId
+        // underscoreë¥¼ camelCaseë¡œ ë§¤ì¹­ : ì˜ˆ) user_id -> userId
         sqlSessionTemplate.getConfiguration().setMapUnderscoreToCamelCase(true);
-        // Insert½Ã »ı¼ºµÇ´Â pk¸¦ beanÀ¸·Î ¹İÈ¯
+        // Insertì‹œ ìƒì„±ë˜ëŠ” pkë¥¼ beanìœ¼ë¡œ ë°˜í™˜
         sqlSessionTemplate.getConfiguration().setUseGeneratedKeys(true);
         return sqlSessionTemplate;
     }
